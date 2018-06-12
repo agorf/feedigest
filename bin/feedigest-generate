@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'feedigest'
+
+puts 'Please provide a list of feed URLs (one per line) and press Ctrl-D'
+
+feed_urls = $stdin.readlines.map(&:strip)
+
+puts Feedigest.new(feed_urls)
