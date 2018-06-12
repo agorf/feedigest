@@ -6,9 +6,11 @@ require 'reverse_markdown'
 
 class Feedigest
   ENTRY_WINDOW = ENV.fetch('FEEDIGEST_ENTRY_WINDOW', 60 * 60 * 24) # Seconds
-  EMAIL_FROM = ENV.fetch('FEEDIGEST_EMAIL_SENDER',
-                         "feedigest@#{`hostname`.strip}")
-  EMAIL_TO = ENV.fetch('FEEDIGEST_EMAIL_RECIPIENT')
+  EMAIL_SENDER = ENV.fetch(
+    'FEEDIGEST_EMAIL_SENDER',
+    "feedigest@#{`hostname`.strip}"
+  )
+  EMAIL_RECIPIENT = ENV.fetch('FEEDIGEST_EMAIL_RECIPIENT')
   DELIVERY_METHOD = ENV.fetch('FEEDIGEST_DELIVERY_METHOD', 'sendmail').to_sym
 
   Feed = Struct.new(:url, :title, :entries, :error)
@@ -37,8 +39,8 @@ class Feedigest
     return @build_email if @build_email
 
     mail = Mail.new
-    mail.from = EMAIL_FROM
-    mail.to = EMAIL_TO
+    mail.from = EMAIL_SENDER
+    mail.to = EMAIL_RECIPIENT
     mail.subject = email_subject
     mail.text_part = build_email_text_part
     mail.html_part = build_email_html_part
