@@ -74,7 +74,7 @@ class Feedigest
     sprintf(
       'Digest for %s in %s',
       pluralize(entries_count, 'entry', 'entries'),
-      pluralize(feeds.size, 'feed')
+      pluralize(feeds_without_error.size, 'feed')
     )
   end
 
@@ -137,6 +137,10 @@ class Feedigest
 
   def feeds
     @feeds ||= all_feeds.select { |f| process_feed?(f) }
+  end
+
+  def feeds_without_error
+    feeds.select { |feed| feed[:error].nil? }
   end
 
   def process_feed?(feed)
