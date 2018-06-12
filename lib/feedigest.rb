@@ -183,7 +183,7 @@ class Feedigest
   end
 
   def entries_count
-    feeds.reduce(0) { |s, f| s + f.entries.size }
+    feeds.reduce(0) { |count, feed| count + feed.entries.size }
   end
 
   def pluralize(count, singular, plural = singular + 's')
