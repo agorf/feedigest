@@ -1,3 +1,13 @@
+PATH
+  remote: .
+  specs:
+    feedigest (0.0.1)
+      dotenv (~> 2.4)
+      feedjira (~> 2.1)
+      mail (~> 2.7)
+      nokogiri (~> 1.8)
+      reverse_markdown (~> 1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -30,11 +40,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dotenv (~> 2.4.0)
-  feedjira (~> 2.1.4)
-  mail (~> 2.7.0)
-  nokogiri (~> 1.8.2)
-  reverse_markdown (~> 1.1.0)
+  feedigest!
 
 BUNDLED WITH
    1.16.2
