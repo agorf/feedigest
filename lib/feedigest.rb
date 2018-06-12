@@ -95,7 +95,7 @@ class Feedigest
       Nokogiri::HTML::Builder.new(encoding: 'utf-8') { |builder|
         builder.div do
           feeds.each do |feed|
-            html_from_feed(builder, feed)
+            feed_html(builder, feed)
           end
         end
       }.to_html
@@ -105,25 +105,31 @@ class Feedigest
     ReverseMarkdown.convert(email_body_html)
   end
 
-  def html_from_feed(builder, feed)
+  def feed_html(builder, feed)
     builder.div do
       if feed.error
         builder.h2 feed.url
         builder.p "Error: #{feed.error}"
       else
         builder.h2 feed.title
-
-        feed.entries.group_by { |e| e.published.to_date }.
-          each do |date, entries|
-          builder.h3 date
-
-          entries.each do |entry|
-            builder.p do
-              builder.a(entry.title, href: entry.url)
-            end
-          end
-        end
+        entries_html(builder, feed.entries)
       end
+    end
+  end
+
+  def entries_html(builder, entries)
+    entries.group_by { |e| e.published.to_date }.each do |date, date_entries|
+      builder.h3 date
+
+      date_entries.each do |entry|
+        entry_html(builder, entry)
+      end
+    end
+  end
+
+  def entry_html(builder, entry)
+    builder.p do
+      builder.a(entry.title, href: entry.url)
     end
   end
 
