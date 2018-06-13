@@ -56,7 +56,7 @@ class Feedigest
   def setup_delivery_method(mail)
     mail.delivery_method(
       :smtp,
-      address: ENV.fetch('FEEDIGEST_SMTP_HOST'),
+      address: ENV.fetch('FEEDIGEST_SMTP_ADDRESS'),
       port: ENV.fetch('FEEDIGEST_SMTP_PORT', '587').to_i,
       user_name: ENV.fetch('FEEDIGEST_SMTP_USERNAME'),
       password: ENV.fetch('FEEDIGEST_SMTP_PASSWORD'),

@@ -50,7 +50,7 @@ The following environment variables and their default values are supported:
 * `FEEDIGEST_EMAIL_SENDER` (default: `feedigest@hostname`) the "from" address in
   the email
 * `FEEDIGEST_EMAIL_RECIPIENT` (required) the email address to send the email to
-* `FEEDIGEST_SMTP_HOST`
+* `FEEDIGEST_SMTP_ADDRESS`
 * `FEEDIGEST_SMTP_PORT` (default: `587`)
 * `FEEDIGEST_SMTP_USERNAME`
 * `FEEDIGEST_SMTP_PASSWORD`
