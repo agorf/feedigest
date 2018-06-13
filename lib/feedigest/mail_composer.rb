@@ -4,6 +4,7 @@ rescue LoadError
 end
 
 require 'mail'
+require 'nokogiri'
 require 'reverse_markdown'
 
 module Feedigest

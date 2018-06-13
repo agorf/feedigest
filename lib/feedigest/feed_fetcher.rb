@@ -4,7 +4,6 @@ rescue LoadError
 end
 
 require 'feedjira'
-require 'nokogiri'
 
 module Feedigest
   class FeedFetcher
