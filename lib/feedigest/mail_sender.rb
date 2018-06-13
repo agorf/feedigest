@@ -9,13 +9,13 @@ module Feedigest
     end
 
     def deliver
-      mail&.deliver
+      mail.deliver
     end
 
     private
 
     def setup_delivery_method!
-      mail&.delivery_method(
+      mail.delivery_method(
         :smtp,
         address: ENV.fetch('FEEDIGEST_SMTP_ADDRESS'),
         port: ENV.fetch('FEEDIGEST_SMTP_PORT', '587').to_i,

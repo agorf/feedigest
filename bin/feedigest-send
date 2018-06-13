@@ -15,8 +15,9 @@ require 'feedigest'
 puts 'Please provide a list of feed URLs (one per line) and press Ctrl-D'
 
 feed_urls = $stdin.readlines.map(&:strip)
+feeds = Feedigest::FeedFetcher.new(feed_urls).feeds
 
-Feedigest::FeedFetcher.new(feed_urls).feeds.
-  yield_self { |feeds| Feedigest::MailComposer.new(feeds).mail }.
-  yield_self { |mail| Feedigest::MailSender.new(mail) }.
-  deliver
+exit if feeds.empty?
+
+mail = Feedigest::MailComposer.new(feeds).mail
+Feedigest::MailSender.new(mail).deliver
