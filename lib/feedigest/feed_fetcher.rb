@@ -1,3 +1,8 @@
+begin
+  require 'dotenv/load'
+rescue LoadError
+end
+
 require 'feedjira'
 require 'nokogiri'
 
