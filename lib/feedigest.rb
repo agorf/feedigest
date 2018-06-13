@@ -26,11 +26,11 @@ class Feedigest
   end
 
   def send_email
-    build_email.deliver if send_email?
+    email.deliver if send_email?
   end
 
   def to_s
-    build_email.to_s
+    email.to_s
   end
 
   private
@@ -39,19 +39,19 @@ class Feedigest
     feeds.any?
   end
 
-  def build_email
-    return @build_email if @build_email
+  def email
+    return @email if @email
 
     mail = Mail.new
     mail.from = EMAIL_SENDER
     mail.to = EMAIL_RECIPIENT
     mail.subject = email_subject
-    mail.text_part = build_email_text_part
-    mail.html_part = build_email_html_part
+    mail.text_part = email_text_part
+    mail.html_part = email_html_part
 
     setup_delivery_method(mail)
 
-    @build_email = mail
+    @email = mail
   end
 
   def setup_delivery_method(mail)
@@ -82,14 +82,14 @@ class Feedigest
     )
   end
 
-  def build_email_text_part
+  def email_text_part
     Mail::Part.new.tap do |p|
       p.content_type 'text/plain; charset=utf-8'
       p.body email_body_text
     end
   end
 
-  def build_email_html_part
+  def email_html_part
     Mail::Part.new.tap do |p|
       p.content_type 'text/html; charset=utf-8'
       p.body email_body_html
