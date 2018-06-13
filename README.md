@@ -18,8 +18,8 @@ As a [gem][] from [RubyGems][]:
 gem install feedigest
 ~~~
 
-If the above command fails, make sure the following packages are installed in
-your system. For Debian/Ubuntu, issue as root:
+If the above command fails, make sure the following system packages are
+installed. For Debian/Ubuntu, issue as root:
 
 ~~~ sh
 apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
@@ -30,20 +30,25 @@ apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
 
 ## Configuration
 
-feedigest is configured through a simple text file that contains pairs of shell
-environment variables. It is suggested to place this under `~/.feedigest`:
+feedigest is configured through shell environment variables. Instead of passing
+them one by one when you run it, it is better to store them in a separate file
+and source it to make them available.
+
+It is suggested to place this file under `~/.feedigest/env`:
 
 ~~~ sh
 mkdir -p ~/.feedigest
 touch ~/.feedigest/env
 chmod 600 ~/.feedigest/env
-$EDITOR ~/.feedigest/env
+cat >~/.feedigest/env
+FEEDIGEST_EMAIL_RECIPIENT=me@mydomain.com
+...
+^D
 ~~~
 
-**Note:** The last command will fail if the `EDITOR` environmental variable is
-not set.
+In the example above, `^D` stands for pressing `Ctrl-D`.
 
-The following environment variables and their default values are supported:
+The following environment variables are supported:
 
 * `FEEDIGEST_ENTRY_WINDOW` (default: `86400`) the maximum age, in seconds, of
   entries to include in the digest
@@ -61,24 +66,24 @@ You can get a free SMTP service plan from [Mailgun][].
 
 [Mailgun]: http://www.mailgun.com/
 
-You also need to provide a list of feeds to subscribe to, with each feed URL on
-a separate line:
+You also need to provide, to the standard input (stdin) of feedigest, a list of
+feed URLs, with each URL on a separate line:
 
 ~~~ sh
-mkdir -p ~/.feedigest
 cat >~/.feedigest/feeds.txt
 https://github.com/agorf/feed2email/commits.atom
 https://github.com/agorf.atom
+...
 ^D
 ~~~
 
-### Running
+## Use
 
 ~~~
 export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
 ~~~
 
-It is best to run this command with [cron][] e.g. once per day.
+It is best to run this with [cron][] e.g. once per day at 10 am.
 
 [cron]: https://en.wikipedia.org/wiki/Cron
 
