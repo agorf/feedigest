@@ -45,9 +45,9 @@ not set.
 
 The following environment variables and their default values are supported:
 
-* `FEEDIGEST_ENTRY_WINDOW` (default: `86400`) the maximum age (in seconds) of
+* `FEEDIGEST_ENTRY_WINDOW` (default: `86400`) the maximum age, in seconds, of
   entries to include in the digest
-* `FEEDIGEST_EMAIL_SENDER` (default: `feedigest@hostname`) the "From" address in
+* `FEEDIGEST_EMAIL_SENDER` (default: `feedigest@hostname`) the "from" address in
   the email
 * `FEEDIGEST_EMAIL_RECIPIENT` (required) the email address to send the email to
 * `FEEDIGEST_DELIVERY_METHOD` (default: `sendmail`) can also be `smtp`
@@ -61,13 +61,31 @@ If `FEEDIGEST_DELIVERY_METHOD` is `smtp`, the following options are also used:
 * `FEEDIGEST_SMTP_AUTH` (default: `plain`)
 * `FEEDIGEST_SMTP_STARTTLS` (default: `true`)
 
+If you want to use the SMTP method, which is the easiest to set up, you can get
+a free plan from [Mailgun][].
+
 [Mailgun]: http://www.mailgun.com/
+
+You also need to provide a list of feeds to subscribe to, with each feed URL on
+a separate line:
+
+~~~ sh
+mkdir -p ~/.feedigest
+cat >~/.feedigest/feeds.txt
+https://github.com/agorf/feed2email/commits.atom
+https://github.com/agorf.atom
+^D
+~~~
 
 ### Running
 
 ~~~
-$ export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
+export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
 ~~~
+
+It is best to place run this command with [cron][] e.g. once per day.
+
+[cron]: https://en.wikipedia.org/wiki/Cron
 
 ## Contributing
 
