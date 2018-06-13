@@ -15,7 +15,6 @@ class Feedigest
     "feedigest@#{`hostname`.strip}"
   )
   EMAIL_RECIPIENT = ENV.fetch('FEEDIGEST_EMAIL_RECIPIENT')
-  DELIVERY_METHOD = ENV.fetch('FEEDIGEST_DELIVERY_METHOD', 'sendmail').to_sym
 
   Feed = Struct.new(:url, :title, :entries, :error)
 
@@ -55,23 +54,15 @@ class Feedigest
   end
 
   def setup_delivery_method(mail)
-    mail.delivery_method(DELIVERY_METHOD, delivery_method_options)
-  end
-
-  def delivery_method_options
-    case DELIVERY_METHOD
-    when :smtp
-      {
-        address: ENV.fetch('FEEDIGEST_SMTP_HOST'),
-        port: ENV.fetch('FEEDIGEST_SMTP_PORT', '587').to_i,
-        user_name: ENV.fetch('FEEDIGEST_SMTP_USERNAME'),
-        password: ENV.fetch('FEEDIGEST_SMTP_PASSWORD'),
-        authentication: ENV.fetch('FEEDIGEST_SMTP_AUTH', 'plain'),
-        enable_starttls: ENV.fetch('FEEDIGEST_SMTP_STARTTLS', 'true') == 'true'
-      }
-    else
-      {}
-    end
+    mail.delivery_method(
+      :smtp,
+      address: ENV.fetch('FEEDIGEST_SMTP_HOST'),
+      port: ENV.fetch('FEEDIGEST_SMTP_PORT', '587').to_i,
+      user_name: ENV.fetch('FEEDIGEST_SMTP_USERNAME'),
+      password: ENV.fetch('FEEDIGEST_SMTP_PASSWORD'),
+      authentication: ENV.fetch('FEEDIGEST_SMTP_AUTH', 'plain'),
+      enable_starttls: ENV.fetch('FEEDIGEST_SMTP_STARTTLS', 'true') == 'true'
+    )
   end
 
   def email_subject

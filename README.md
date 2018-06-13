@@ -50,10 +50,6 @@ The following environment variables and their default values are supported:
 * `FEEDIGEST_EMAIL_SENDER` (default: `feedigest@hostname`) the "from" address in
   the email
 * `FEEDIGEST_EMAIL_RECIPIENT` (required) the email address to send the email to
-* `FEEDIGEST_DELIVERY_METHOD` (default: `sendmail`) can also be `smtp`
-
-If `FEEDIGEST_DELIVERY_METHOD` is `smtp`, the following options are also used:
-
 * `FEEDIGEST_SMTP_HOST`
 * `FEEDIGEST_SMTP_PORT` (default: `587`)
 * `FEEDIGEST_SMTP_USERNAME`
@@ -61,8 +57,7 @@ If `FEEDIGEST_DELIVERY_METHOD` is `smtp`, the following options are also used:
 * `FEEDIGEST_SMTP_AUTH` (default: `plain`)
 * `FEEDIGEST_SMTP_STARTTLS` (default: `true`)
 
-If you want to use the SMTP method, which is the easiest to set up, you can get
-a free plan from [Mailgun][].
+You can get a free SMTP service plan from [Mailgun][].
 
 [Mailgun]: http://www.mailgun.com/
 
