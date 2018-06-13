@@ -46,7 +46,7 @@ module Feedigest
     def feed_entries(feed)
       feed.entries.
         select { |e| process_entry?(e) }.
-        sort_by { |e| e.published }.
+        sort_by(&:published).
         reverse
     end
 
