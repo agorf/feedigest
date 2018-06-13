@@ -1,4 +1,3 @@
-require 'mail'
 require 'nokogiri'
 require 'reverse_markdown'
 
@@ -10,6 +9,8 @@ module Feedigest
     )
     EMAIL_RECIPIENT = ENV.fetch('FEEDIGEST_EMAIL_RECIPIENT')
 
+    Mail = Struct.new(:from, :to, :subject, :html_body, :text_body)
+
     attr_reader :feeds
 
     def initialize(feeds)
@@ -17,16 +18,13 @@ module Feedigest
     end
 
     def mail
-      return @mail if @mail
-
-      mail = Mail.new
-      mail.from = EMAIL_SENDER
-      mail.to = EMAIL_RECIPIENT
-      mail.subject = subject
-      mail.text_part = text_part
-      mail.html_part = html_part
-
-      @mail = mail
+      @mail ||= Mail.new(
+        EMAIL_SENDER,
+        EMAIL_RECIPIENT,
+        subject,
+        html_body,
+        text_body
+      )
     end
 
     private
@@ -39,22 +37,8 @@ module Feedigest
       )
     end
 
-    def text_part
-      Mail::Part.new.tap do |p|
-        p.content_type 'text/plain; charset=utf-8'
-        p.body body_text
-      end
-    end
-
-    def html_part
-      Mail::Part.new.tap do |p|
-        p.content_type 'text/html; charset=utf-8'
-        p.body body_html
-      end
-    end
-
-    def body_html
-      @body_html ||=
+    def html_body
+      @html_body ||=
         Nokogiri::HTML::Builder.new(encoding: 'utf-8') { |builder|
           builder.div do
             feeds.each do |feed|
@@ -64,8 +48,8 @@ module Feedigest
         }.to_html
     end
 
-    def body_text
-      ReverseMarkdown.convert(body_html)
+    def text_body
+      ReverseMarkdown.convert(html_body)
     end
 
     def feed_html(builder, feed)

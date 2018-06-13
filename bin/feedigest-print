@@ -19,4 +19,5 @@ feeds = Feedigest::FeedFetcher.new(feed_urls).feeds
 
 exit if feeds.empty?
 
-puts Feedigest::MailComposer.new(feeds).mail
+mail = Feedigest::MailComposer.new(feeds).mail
+puts Feedigest::MailSender.new(mail)
