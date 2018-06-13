@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+begin
+  require 'dotenv/load'
+rescue LoadError
+end
+
 if ENV['FEEDIGEST_EMAIL_RECIPIENT'].nil?
   puts 'Please set $FEEDIGEST_EMAIL_RECIPIENT and try again'
   exit 1

@@ -1,8 +1,3 @@
-begin
-  require 'dotenv/load'
-rescue LoadError
-end
-
 require 'feedjira'
 
 module Feedigest

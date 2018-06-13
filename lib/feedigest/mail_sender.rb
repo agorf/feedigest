@@ -1,8 +1,3 @@
-begin
-  require 'dotenv/load'
-rescue LoadError
-end
-
 module Feedigest
   class MailSender
     attr_reader :mail
