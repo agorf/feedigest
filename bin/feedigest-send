@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'feedigest'
-
 if ENV['FEEDIGEST_EMAIL_RECIPIENT'].nil?
   puts 'Please set $FEEDIGEST_EMAIL_RECIPIENT and try again'
   exit 1
 end
+
+require 'feedigest'
 
 puts 'Please provide a list of feed URLs (one per line) and press Ctrl-D'
 
