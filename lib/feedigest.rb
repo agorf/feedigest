@@ -175,7 +175,8 @@ class Feedigest
   def feed_entries(feed)
     feed.entries.
       select { |e| process_entry?(e) }.
-      sort_by { |e| -e.published.to_i }
+      sort_by { |e| e.published }.
+      reverse
   end
 
   def process_entry?(entry)
