@@ -83,7 +83,7 @@ https://github.com/agorf.atom
 export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
 ~~~
 
-It is best to place run this command with [cron][] e.g. once per day.
+It is best to run this command with [cron][] e.g. once per day.
 
 [cron]: https://en.wikipedia.org/wiki/Cron
 
