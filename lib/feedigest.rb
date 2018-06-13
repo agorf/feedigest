@@ -1,4 +1,8 @@
-require 'dotenv/load'
+begin
+  require 'dotenv/load'
+rescue LoadError
+end
+
 require 'feedjira'
 require 'mail'
 require 'nokogiri'

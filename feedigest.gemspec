@@ -13,9 +13,10 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.3.3'
 
-  gem.add_dependency 'dotenv', '~> 2.4'
   gem.add_dependency 'feedjira', '~> 2.1'
   gem.add_dependency 'mail', '~> 2.7'
   gem.add_dependency 'nokogiri', '~> 1.8'
   gem.add_dependency 'reverse_markdown', '~> 1.1'
+
+  gem.add_development_dependency 'dotenv', '~> 2.4'
 end
