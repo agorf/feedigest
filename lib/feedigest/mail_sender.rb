@@ -5,12 +5,6 @@ module Feedigest
   class MailSender
     extend Forwardable
 
-    EMAIL_SENDER = ENV.fetch(
-      'FEEDIGEST_EMAIL_SENDER',
-      "feedigest@#{`hostname`.strip}"
-    )
-    EMAIL_RECIPIENT = ENV.fetch('FEEDIGEST_EMAIL_RECIPIENT')
-
     attr_reader :mail_data
 
     delegate %i[deliver to_s] => :mail
