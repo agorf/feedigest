@@ -31,22 +31,20 @@ apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
 ## Configuration
 
 feedigest is configured through shell environment variables. Instead of passing
-them one by one when you run it, it is better to store them in a separate file
-and source it to make them available.
-
-It is suggested to place this file under `~/.feedigest/env`:
+them one by one when you run it, you can store them in a separate file and
+source it to make them available:
 
 ~~~ sh
 mkdir -p ~/.feedigest
 touch ~/.feedigest/env
 chmod 600 ~/.feedigest/env
-cat >~/.feedigest/env
+cat > ~/.feedigest/env
 FEEDIGEST_EMAIL_RECIPIENT=me@mydomain.com
 ...
 ^D
 ~~~
 
-In the example above, `^D` stands for pressing `Ctrl-D`.
+**Note:** In the example above, `^D` stands for pressing `Ctrl-D`.
 
 The following environment variables are supported:
 
@@ -54,7 +52,13 @@ The following environment variables are supported:
   entries to include in the digest
 * `FEEDIGEST_EMAIL_SENDER` (default: `feedigest@hostname`) the "from" address in
   the email
-* `FEEDIGEST_EMAIL_RECIPIENT` (required) the email address to send the email to
+* `FEEDIGEST_EMAIL_RECIPIENT` the email address to send the email to
+
+feedigest uses SMTP to send emails. You can get a free plan from [Mailgun][].
+The relevant environment variables are:
+
+[Mailgun]: http://www.mailgun.com/
+
 * `FEEDIGEST_SMTP_ADDRESS`
 * `FEEDIGEST_SMTP_PORT` (default: `587`)
 * `FEEDIGEST_SMTP_USERNAME`
@@ -62,15 +66,11 @@ The following environment variables are supported:
 * `FEEDIGEST_SMTP_AUTH` (default: `plain`)
 * `FEEDIGEST_SMTP_STARTTLS` (default: `true`)
 
-You can get a free SMTP service plan from [Mailgun][].
-
-[Mailgun]: http://www.mailgun.com/
-
-You also need to provide, to the standard input (stdin) of feedigest, a list of
-feed URLs, with each URL on a separate line:
+Finally, you need to provide to the standard input (stdin) of feedigest, a
+line-separated list of feed URLs:
 
 ~~~ sh
-cat >~/.feedigest/feeds.txt
+cat > ~/.feedigest/feeds.txt
 https://github.com/agorf/feed2email/commits.atom
 https://github.com/agorf.atom
 ...
@@ -79,18 +79,32 @@ https://github.com/agorf.atom
 
 ## Use
 
-~~~
+~~~ sh
 export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
 ~~~
 
-It is best to run this with [cron][] e.g. once per day at 10 am.
+You can run this with [cron][] e.g. once per day at 10 am:
 
 [cron]: https://en.wikipedia.org/wiki/Cron
 
+~~~
+0 10 * * * export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
+~~~
+
+Alternatively, you can have feedigest simply print the generated email so that
+you can send it yourself e.g. by piping it to sendmail. To do that, you simply
+replace `feedigest-send` with `feedigest-print`:
+
+~~~ sh
+export $(cat ~/.feedigest/env | xargs) && feedigest-print < ~/.feedigest/feeds.txt
+~~~
+
 ## Contributing
 
-Using feedigest and want to help? [Let me know](https://agorf.gr/) how you use
-it and if you have any ideas on how to improve it.
+Using feedigest and want to help? Please [let me know][contact] how you use it
+and if you have any ideas on how to improve it.
+
+[contact]: https://agorf.gr/contact/
 
 ## License
 
