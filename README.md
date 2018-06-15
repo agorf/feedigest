@@ -35,10 +35,10 @@ them one by one when you run it, you can store them in a separate file and
 source it to make them available:
 
 ~~~ sh
-mkdir -p ~/.feedigest
-touch ~/.feedigest/env
-chmod 600 ~/.feedigest/env
-cat > ~/.feedigest/env
+$ mkdir -p ~/.feedigest
+$ touch ~/.feedigest/env
+$ chmod 600 ~/.feedigest/env
+$ cat > ~/.feedigest/env
 FEEDIGEST_EMAIL_RECIPIENT=me@mydomain.com
 ...
 ^D
@@ -70,7 +70,7 @@ Finally, you need to provide to the standard input (stdin) of feedigest, a
 line-separated list of feed URLs:
 
 ~~~ sh
-cat > ~/.feedigest/feeds.txt
+$ cat > ~/.feedigest/feeds.txt
 https://github.com/agorf/feed2email/commits.atom
 https://github.com/agorf.atom
 ...
