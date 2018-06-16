@@ -1,3 +1,4 @@
+require 'feedigest/version'
 require 'nokogiri'
 require 'reverse_markdown'
 
@@ -44,6 +45,8 @@ module Feedigest
             feeds.each do |feed|
               feed_html(builder, feed)
             end
+
+            signature_html(builder)
           end
         }.to_html
     end
@@ -77,6 +80,18 @@ module Feedigest
     def entry_html(builder, entry)
       builder.p do
         builder.a(entry.title, href: entry.url)
+      end
+    end
+
+    def signature_html(builder)
+      builder.p do
+        builder.text '--'
+        builder.br
+        builder.text 'Sent by '
+        builder.a(
+          "feedigest #{Feedigest::VERSION}",
+          href: 'https://github.com/agorf/feedigest'
+        )
       end
     end
 
