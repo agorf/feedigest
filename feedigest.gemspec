@@ -1,6 +1,8 @@
+require File.expand_path('../lib/feedigest/version', __FILE__)
+
 Gem::Specification.new do |gem|
   gem.name          = 'feedigest'
-  gem.version       = '0.0.1'
+  gem.version       = Feedigest::VERSION
   gem.author        = 'Angelos Orfanakos'
   gem.email         = 'me@agorf.gr'
   gem.homepage      = 'https://github.com/agorf/feedigest'
