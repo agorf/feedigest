@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'dotenv/load'
+rescue LoadError
+end
+
+if ENV['FEEDIGEST_EMAIL_RECIPIENT'].nil?
+  puts 'Please set $FEEDIGEST_EMAIL_RECIPIENT and try again'
+  exit 1
+end
+
+require 'feedigest'
+
+puts 'Please provide a list of feed URLs (one per line) and press Ctrl-D'
+
+feed_urls = $stdin.readlines.map(&:strip)
+feeds = Feedigest::FeedFetcher.new(feed_urls).feeds
+
+exit if feeds.empty?
+
+mail = Feedigest::MailComposer.new(feeds).mail
+mail_sender = Feedigest::MailSender.new(mail)
+
+case File.basename($PROGRAM_NAME).split('-').last
+when 'send' then mail_sender.deliver
+when 'print' then puts mail_sender
+end
