@@ -1,8 +1,7 @@
+require 'feedigest/options'
 require 'feedjira'
 
 class Feedigest::FeedFetcher
-  ENTRY_WINDOW = ENV.fetch('FEEDIGEST_ENTRY_WINDOW', 60 * 60 * 24) # Seconds
-
   Feed = Struct.new(:url, :title, :entries, :error)
 
   attr_reader :feed_urls
@@ -51,6 +50,6 @@ class Feedigest::FeedFetcher
   end
 
   def window_start
-    @window_start ||= Time.now - ENTRY_WINDOW
+    @window_start ||= Time.now - Feedigest.options[:entry_window]
   end
 end

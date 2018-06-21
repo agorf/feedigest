@@ -1,14 +1,9 @@
+require 'feedigest/options'
 require 'feedigest/version'
 require 'nokogiri'
 require 'reverse_markdown'
 
 class Feedigest::MailComposer
-  EMAIL_SENDER = ENV.fetch(
-    'FEEDIGEST_EMAIL_SENDER',
-    "feedigest@#{`hostname`.strip}"
-  )
-  EMAIL_RECIPIENT = ENV.fetch('FEEDIGEST_EMAIL_RECIPIENT')
-
   Mail = Struct.new(:from, :to, :subject, :html_body, :text_body)
 
   attr_reader :feeds
@@ -19,8 +14,8 @@ class Feedigest::MailComposer
 
   def mail
     @mail ||= Mail.new(
-      EMAIL_SENDER,
-      EMAIL_RECIPIENT,
+      Feedigest.options[:email_sender],
+      Feedigest.options[:email_recipient],
       subject,
       html_body,
       text_body

@@ -1,3 +1,4 @@
+require 'feedigest/options'
 require 'forwardable'
 require 'mail'
 
@@ -43,14 +44,6 @@ class Feedigest::MailSender
   end
 
   def setup_delivery_method!(mail)
-    mail.delivery_method(
-      :smtp,
-      address: ENV.fetch('FEEDIGEST_SMTP_ADDRESS'),
-      port: ENV.fetch('FEEDIGEST_SMTP_PORT', '587').to_i,
-      user_name: ENV.fetch('FEEDIGEST_SMTP_USERNAME'),
-      password: ENV.fetch('FEEDIGEST_SMTP_PASSWORD'),
-      authentication: ENV.fetch('FEEDIGEST_SMTP_AUTH', 'plain'),
-      enable_starttls: ENV.fetch('FEEDIGEST_SMTP_STARTTLS', 'true') == 'true'
-    )
+    mail.delivery_method(:smtp, Feedigest.options[:smtp])
   end
 end
