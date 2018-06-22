@@ -80,7 +80,8 @@ https://github.com/agorf.atom
 ## Use
 
 ~~~ sh
-export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
+$ source ~/.feedigest/env
+$ feedigest-send < ~/.feedigest/feeds.txt
 ~~~
 
 You can run this with [cron][] e.g. once per day at 10 am:
@@ -96,7 +97,7 @@ you can send it yourself e.g. by piping it to sendmail. To do that, you simply
 replace `feedigest-send` with `feedigest-print`:
 
 ~~~ sh
-export $(cat ~/.feedigest/env | xargs) && feedigest-print < ~/.feedigest/feeds.txt
+feedigest-print < ~/.feedigest/feeds.txt
 ~~~
 
 ## Contributing
