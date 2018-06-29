@@ -23,7 +23,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Changed
 
 - Clean up and refactor code.
-- dotenv to be a development dependency.
+- `dotenv` to be a development dependency.
 - `FEEDIGEST_SMTP_HOST` option to `FEEDIGEST_SMTP_ADDRESS`
 - `feedigest-generate` command to `feedigest-print`
 
