@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby
 
-begin
-  require 'dotenv/load'
-rescue LoadError
-end
-
 require 'feedigest'
 
 puts 'Please provide a list of feed URLs (one per line) and press Ctrl-D'
