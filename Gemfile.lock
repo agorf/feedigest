@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    feedigest (0.0.1)
+    feedigest (0.0.2)
       feedjira (~> 2.1)
       mail (~> 2.7)
       nokogiri (~> 1.8)
