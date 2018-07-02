@@ -7,10 +7,15 @@ class Feedigest::MailSender
 
   attr_reader :mail_data
 
-  delegate %i[deliver to_s] => :mail
+  delegate %i[to_s] => :mail
 
   def initialize(mail_data)
     @mail_data = mail_data
+  end
+
+  def deliver
+    setup_delivery_method!(mail)
+    mail.deliver
   end
 
   private
@@ -18,15 +23,13 @@ class Feedigest::MailSender
   def mail
     return @mail if @mail
 
-    m = Mail.new
-    m.from = mail_data.from
-    m.to = mail_data.to
-    m.subject = mail_data.subject
-    m.html_part = html_part
-    m.text_part = text_part
-    setup_delivery_method!(m)
-
-    @mail = m
+    @mail = Mail.new
+    @mail.from = mail_data.from
+    @mail.to = mail_data.to
+    @mail.subject = mail_data.subject
+    @mail.html_part = html_part
+    @mail.text_part = text_part
+    @mail
   end
 
   def html_part
@@ -44,6 +47,6 @@ class Feedigest::MailSender
   end
 
   def setup_delivery_method!(mail)
-    mail.delivery_method(:smtp, Feedigest.options[:smtp])
+    mail.delivery_method(:smtp, Feedigest.smtp_options)
   end
 end
