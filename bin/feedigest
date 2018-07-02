@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+if !%w[send print].include?(ARGV[0])
+  puts "#$0 <send|print>"
+  exit 1
+end
+
 require 'feedigest'
 
 puts 'Please provide a list of feed URLs (one per line) and press Ctrl-D'
@@ -12,7 +17,7 @@ exit if feeds.empty?
 mail = Feedigest::MailComposer.new(feeds).mail
 mail_sender = Feedigest::MailSender.new(mail)
 
-case File.basename($PROGRAM_NAME).split('-').last
+case ARGV[0]
 when 'send' then mail_sender.deliver
 when 'print' then puts mail_sender
 end
