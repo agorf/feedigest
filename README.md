@@ -80,7 +80,7 @@ https://github.com/agorf.atom
 ## Use
 
 ~~~ sh
-export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
+export $(cat ~/.feedigest/env | xargs) && feedigest send < ~/.feedigest/feeds.txt
 ~~~
 
 You can run this with [cron][] e.g. once per day at 10 am:
@@ -88,15 +88,15 @@ You can run this with [cron][] e.g. once per day at 10 am:
 [cron]: https://en.wikipedia.org/wiki/Cron
 
 ~~~
-0 10 * * * export $(cat ~/.feedigest/env | xargs) && feedigest-send < ~/.feedigest/feeds.txt
+0 10 * * * export $(cat ~/.feedigest/env | xargs) && feedigest send < ~/.feedigest/feeds.txt
 ~~~
 
 Alternatively, you can have feedigest simply print the generated email so that
 you can send it yourself e.g. by piping it to sendmail. To do that, you simply
-replace `feedigest-send` with `feedigest-print`:
+replace `feedigest send` with `feedigest print`:
 
 ~~~ sh
-feedigest-print < ~/.feedigest/feeds.txt
+feedigest print < ~/.feedigest/feeds.txt
 ~~~
 
 ## Contributing
