@@ -7,7 +7,14 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ## [Unreleased][]
 
-## [0.0.3][] - 2018-07-03
+## [0.1.0][] - 2018-07-04
+
+### Changed
+
+- Bump version to 0.1.0 to signify 0.0.2 (which should have been 0.1.0) has
+  breaking changes.
+
+## [0.0.3][] - 2018-07-03 [YANKED]
 
 ### Changed
 
@@ -42,4 +49,5 @@ Initial release.
 [Semantic Versioning]: http://semver.org/spec/v2.0.0.html
 [0.0.2]: https://github.com/agorf/feedigest/compare/0.0.1...0.0.2
 [0.0.3]: https://github.com/agorf/feedigest/compare/0.0.2...0.0.3
-[Unreleased]: https://github.com/agorf/feedigest/compare/0.0.3...HEAD
+[0.1.0]: https://github.com/agorf/feedigest/compare/0.0.3...0.1.0
+[Unreleased]: https://github.com/agorf/feedigest/compare/0.1.0...HEAD
