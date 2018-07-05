@@ -1,13 +1,17 @@
 require 'feedigest/options'
 require 'feedjira'
+require 'open-uri'
 
 class Feedigest::FeedFetcher
   Feed = Struct.new(:url, :title, :entries, :error)
 
-  attr_reader :feed_urls
+  USER_AGENT = "feedigest/#{Feedigest::VERSION}".freeze
 
-  def initialize(feed_urls)
+  attr_reader :feed_urls, :filter_cmd
+
+  def initialize(feed_urls, filter_cmd = nil)
     @feed_urls = feed_urls
+    @filter_cmd = filter_cmd
   end
 
   def feeds
@@ -34,9 +38,18 @@ class Feedigest::FeedFetcher
     )
   end
 
+  def fetch_feed(url)
+    feed_fd = OpenURI.open_uri(url, 'User-Agent' => USER_AGENT)
+
+    if filter_cmd
+      filter_feed(feed_fd)
+    else
+      feed_fd.read
+    end
+  end
+
   def fetch_and_parse_feed(url)
-    feed = Feedjira::Feed.fetch_and_parse(url)
-    [feed, nil]
+    [Feedjira::Feed.parse(fetch_feed(url)), nil]
   rescue StandardError => e
     [nil, e.message]
   end
@@ -51,5 +64,13 @@ class Feedigest::FeedFetcher
 
   def window_start
     @window_start ||= Time.now - Feedigest.options[:entry_window]
+  end
+
+  def filter_feed(feed_fd)
+    IO.popen(filter_cmd, 'r+') do |io|
+      IO.copy_stream(feed_fd, io)
+      io.close_write
+      io.read
+    end
   end
 end

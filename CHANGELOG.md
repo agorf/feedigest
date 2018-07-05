@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ## [Unreleased][]
 
+### Added
+
+- Support filtering feeds through an external command.
+
 ## [0.1.0][] - 2018-07-04
 
 ### Changed

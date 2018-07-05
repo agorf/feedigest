@@ -10,7 +10,7 @@ require 'feedigest'
 puts 'Please provide a list of feed URLs (one per line) and press Ctrl-D'
 
 feed_urls = $stdin.readlines.map(&:strip)
-feeds = Feedigest::FeedFetcher.new(feed_urls).feeds
+feeds = Feedigest::FeedFetcher.new(feed_urls, ARGV[1]).feeds
 
 exit if feeds.empty?
 
