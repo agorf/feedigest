@@ -77,6 +77,8 @@ https://github.com/agorf.atom
 ^D
 ~~~
 
+**Note:** In the example above, `^D` stands for pressing `Ctrl-D`.
+
 ## Use
 
 ~~~ sh
