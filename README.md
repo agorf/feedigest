@@ -48,12 +48,13 @@ The relevant configuration options are:
 
 [Mailgun]: http://www.mailgun.com/
 
-* `smtp_address`
-* `smtp_port` (default: `587`)
-* `smtp_username`
-* `smtp_password`
-* `smtp_auth` (default: `plain`)
-* `smtp_starttls` (default: `true`)
+* `smtp_address` (required) SMTP service address to connect to
+* `smtp_port` (default: `587`) SMTP service port to connect to
+* `smtp_username` (required) username of your email account
+* `smtp_password` (required) password of your email account
+* `smtp_auth` (default: `plain`) controls authentication method (can also be
+  `login` or `cram_md5`)
+* `smtp_starttls` (default: `true`) controls use of STARTTLS
 
 Finally, you need to provide to the standard input (stdin) of feedigest, a
 line-separated list of feed URLs:
