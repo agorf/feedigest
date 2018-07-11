@@ -1,4 +1,4 @@
-require 'feedigest/options'
+require 'feedigest/config'
 require 'forwardable'
 require 'mail'
 
@@ -47,6 +47,6 @@ class Feedigest::MailSender
   end
 
   def setup_delivery_method!(mail)
-    mail.delivery_method(:smtp, Feedigest.smtp_options)
+    mail.delivery_method(:smtp, Feedigest.config.mail_gem_smtp_options)
   end
 end

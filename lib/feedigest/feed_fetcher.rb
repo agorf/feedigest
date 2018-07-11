@@ -1,4 +1,4 @@
-require 'feedigest/options'
+require 'feedigest/config'
 require 'feedjira'
 require 'open-uri'
 
@@ -63,7 +63,7 @@ class Feedigest::FeedFetcher
   end
 
   def window_start
-    @window_start ||= Time.now - Feedigest.options[:entry_window]
+    @window_start ||= Time.now - Feedigest.config.fetch(:entry_window)
   end
 
   def filter_feed(feed_fd)

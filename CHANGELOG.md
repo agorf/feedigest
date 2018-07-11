@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 - Support filtering feeds through an external command.
 
+### Changed
+
+- Configuration from environment variables to a YAML file.
+
 ## [0.1.0][] - 2018-07-04
 
 ### Changed

@@ -1,4 +1,4 @@
-require 'feedigest/options'
+require 'feedigest/config'
 require 'feedigest/version'
 require 'nokogiri'
 require 'reverse_markdown'
@@ -14,8 +14,8 @@ class Feedigest::MailComposer
 
   def mail
     @mail ||= Mail.new(
-      Feedigest.options[:email_sender],
-      Feedigest.options[:email_recipient],
+      Feedigest.config.fetch(:email_sender),
+      Feedigest.config.fetch(:email_recipient),
       subject,
       html_body,
       text_body
