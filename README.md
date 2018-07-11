@@ -41,7 +41,7 @@ The following configuration options are supported:
   entries to include in the digest
 * `email_sender` (default: `feedigest@hostname`) the "from" address in
   the email
-* `email_recipient` the email address to send the email to
+* `email_recipient` (required) the email address to send the email to
 
 feedigest uses SMTP to send emails. You can get a free plan from [Mailgun][].
 The relevant configuration options are:
