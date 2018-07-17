@@ -36,6 +36,8 @@ class Feedigest::MailComposer
     @html_body ||=
       Nokogiri::HTML::Builder.new(encoding: 'utf-8') { |builder|
         builder.div do
+          header_html(builder)
+
           feeds.each do |feed|
             feed_html(builder, feed)
           end
@@ -47,6 +49,18 @@ class Feedigest::MailComposer
 
   def text_body
     ReverseMarkdown.convert(html_body)
+  end
+
+  def header_html(builder)
+    builder.p(
+      sprintf(
+        'In the last %{hours}, %{entries} %{were} published in %{feeds}:',
+        hours: pluralize(Feedigest.config.fetch(:entry_window), 'hour'),
+        entries: pluralize(entries_count, 'entry', 'entries'),
+        were: entries_count == 1 ? 'was' : 'were',
+        feeds: pluralize(feeds_without_error.size, 'feed')
+      )
+    )
   end
 
   def feed_html(builder, feed)
