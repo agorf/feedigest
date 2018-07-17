@@ -91,6 +91,50 @@ replace `feedigest send` with `feedigest print`:
 feedigest print < ~/.feedigest/feeds.txt
 ```
 
+It is also possible to have each feed filtered by a custom command (e.g.
+script).
+
+For example, the following script fixes a feed's entry publication dates that
+use Greek month names and don't follow the required RFC822 format:
+
+```ruby
+require 'nokogiri'
+
+feed_data = $stdin.read
+doc = Nokogiri.XML(feed_data)
+
+case feed_data
+when /advendure\.com/
+  doc.css('pubDate').each do |pubdate|
+    %w[
+      Ιαν Φεβ Μαρ Απρ Μαι Ιουν Ιουλ Αυγ Σεπ Οκτ Νοβ Δεκ
+      Δε Τρ Τε Πε Πα Σα Κυ
+    ].zip(
+      %w[
+        Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+        Mo Tu We Th Fr Sa Su
+      ]
+    ).each do |greek, latin|
+      pubdate.content = pubdate.content.sub(greek, latin)
+    end
+  end
+
+  print doc
+else
+  print feed_data # Do nothing
+end
+```
+
+The script reads the feed XML from its standard input (stdin) and writes the
+modified XML to its standard output (stdout).
+
+To use it as a filter, you simply pass as a command-line argument the necessary
+command to execute it:
+
+```sh
+feedigest send 'ruby /path/to/filter.rb' < ~/.feedigest/feeds.txt
+```
+
 ## Contributing
 
 Using feedigest and want to help? Please [let me know][contact] how you use it
