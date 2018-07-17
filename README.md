@@ -143,4 +143,4 @@ feedigest send 'ruby /path/to/filter.rb' < ~/.feedigest/feeds.txt
 
 ## Author
 
-Angelos Orfanakos, <https://agorf.gr/>
+[Angelos Orfanakos](https://agorf.gr/contact/)
