@@ -135,13 +135,6 @@ command to execute it:
 feedigest send 'ruby /path/to/filter.rb' < ~/.feedigest/feeds.txt
 ```
 
-## Contributing
-
-Using feedigest and want to help? Please [let me know][contact] how you use it
-and if you have any ideas on how to improve it.
-
-[contact]: https://agorf.gr/contact/
-
 ## License
 
 [MIT][]
