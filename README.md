@@ -100,9 +100,9 @@ and if you have any ideas on how to improve it.
 
 ## License
 
-Licensed under the MIT license (see [LICENSE.txt][license]).
+[MIT][]
 
-[license]: https://github.com/agorf/feedigest/blob/master/LICENSE.txt
+[MIT]: https://github.com/agorf/feedigest/blob/master/LICENSE.txt
 
 ## Author
 
