@@ -1,4 +1,3 @@
-require 'facets/hash/rekey'
 require 'yaml'
 
 class Feedigest::Config
@@ -40,7 +39,8 @@ class Feedigest::Config
   private
 
   def user_options
-    YAML.safe_load(File.read(path)).rekey # rekey symbolizes keys
+    YAML.safe_load(File.read(path)).
+      map { |k, v| [k.to_sym, v] }.to_h # Symbolize keys
   end
 
   def default_options

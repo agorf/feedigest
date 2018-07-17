@@ -15,7 +15,6 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.3.3'
 
-  gem.add_dependency 'facets', '~> 3.1.0'
   gem.add_dependency 'feedjira', '~> 2.1'
   gem.add_dependency 'mail', '~> 2.7'
   gem.add_dependency 'nokogiri', '~> 1.8'

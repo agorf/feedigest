@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     feedigest (0.1.0)
-      facets (~> 3.1.0)
       feedjira (~> 2.1)
       mail (~> 2.7)
       nokogiri (~> 1.8)
@@ -15,7 +14,6 @@ GEM
       bundler (~> 1.2)
       thor (~> 0.18)
     crass (1.0.4)
-    facets (3.1.0)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
