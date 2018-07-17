@@ -14,16 +14,16 @@ It was written as a simpler alternative to [feed2email][].
 
 As a [gem][] from [RubyGems][]:
 
-~~~ sh
+```sh
 gem install feedigest
-~~~
+```
 
 If the above command fails, make sure the following system packages are
 installed. For Debian/Ubuntu, issue as root:
 
-~~~ sh
+```sh
 apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
-~~~
+```
 
 [gem]: http://rubygems.org/gems/feedigest
 [RubyGems]: http://rubygems.org/
@@ -59,37 +59,37 @@ The relevant configuration options are:
 Finally, you need to provide to the standard input (stdin) of feedigest, a
 line-separated list of feed URLs:
 
-~~~ sh
+```sh
 $ cat > ~/.feedigest/feeds.txt
 https://github.com/agorf/feed2email/commits.atom
 https://github.com/agorf.atom
 ...
 ^D
-~~~
+```
 
 **Note:** In the example above, `^D` stands for pressing `Ctrl-D`.
 
 ## Use
 
-~~~ sh
+```sh
 feedigest send < ~/.feedigest/feeds.txt
-~~~
+```
 
 You can run this with [cron][] e.g. once per day at 10 am:
 
 [cron]: https://en.wikipedia.org/wiki/Cron
 
-~~~
+```
 0 10 * * * feedigest send < ~/.feedigest/feeds.txt
-~~~
+```
 
 Alternatively, you can have feedigest simply print the generated email so that
 you can send it yourself e.g. by piping it to sendmail. To do that, you simply
 replace `feedigest send` with `feedigest print`:
 
-~~~ sh
+```sh
 feedigest print < ~/.feedigest/feeds.txt
-~~~
+```
 
 ## Contributing
 
