@@ -63,7 +63,7 @@ class Feedigest::FeedFetcher
   end
 
   def window_start
-    @window_start ||= Time.now - Feedigest.config.fetch(:entry_window)
+    @window_start ||= Time.now - Feedigest.config.fetch(:entry_window) * 3600
   end
 
   def filter_feed(feed_fd)

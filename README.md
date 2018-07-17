@@ -37,8 +37,8 @@ feedigest is configured through a [YAML][] configuration file located under
 
 The following configuration options are supported:
 
-* `entry_window` (default: `86400`) the maximum age, in seconds, of
-  entries to include in the digest
+* `entry_window` (default: `24`) the maximum age, in hours, of entries to
+  include in the digest
 * `email_sender` (default: `feedigest@hostname`) the "from" address in
   the email
 * `email_recipient` (required) the email address to send the email to

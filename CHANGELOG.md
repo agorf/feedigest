@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Changed
 
 - Configuration from environment variables to a YAML file.
+- `entry_window` config option unit from seconds to hours.
 
 ## [0.1.0][] - 2018-07-04
 

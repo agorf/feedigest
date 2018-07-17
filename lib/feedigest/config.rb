@@ -3,10 +3,6 @@ require 'yaml'
 class Feedigest::Config
   attr_reader :path
 
-  SECOND = 1
-  MINUTE = 60 * SECOND
-  HOUR = 60 * MINUTE
-
   def initialize(path)
     @path = path
   end
@@ -45,7 +41,7 @@ class Feedigest::Config
 
   def default_options
     {
-      entry_window: 24 * HOUR,
+      entry_window: 24,
       email_sender: "feedigest@#{`hostname`.strip}",
       smtp_port: 587,
       smtp_auth: 'plain',
