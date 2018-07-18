@@ -4,6 +4,8 @@ require 'feedigest'
 
 options = Feedigest::OptionParser.new(ARGV).options
 
+Feedigest.config_path = File.expand_path(options[:config])
+
 feed_urls = IO.readlines(options[:feeds]).map(&:strip)
 feeds = Feedigest::FeedFetcher.new(feed_urls, options[:filter]).feeds
 

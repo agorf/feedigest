@@ -129,6 +129,13 @@ pass as a command-line argument the necessary command to execute it:
 feedigest --filter 'ruby /path/to/filter.rb' --feeds ~/.feedigest/feeds.txt
 ```
 
+Finally, it is possible to specify the path to the YAML configuration file with
+`--config`:
+
+```sh
+feedigest --feeds ~/.feedigest/feeds.txt --config ~/.config/feedigest.yaml
+```
+
 You can issue `feedigest -h` to get some help text on the supported options.
 
 ## License

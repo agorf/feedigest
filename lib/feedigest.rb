@@ -3,12 +3,12 @@ module Feedigest; end
 require 'feedigest/config'
 
 module Feedigest
-  def self.config
-    @config ||= Feedigest::Config.new(config_path)
+  class << self
+    attr_accessor :config_path
   end
 
-  def self.config_path
-    File.expand_path('~/.feedigest/config.yaml')
+  def self.config
+    @config ||= Feedigest::Config.new(config_path)
   end
 end
 

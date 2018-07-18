@@ -34,6 +34,12 @@ class Feedigest::OptionParser
 
       o.string '--filter', 'command to filter each feed with'
 
+      o.string(
+        '--config',
+        'path to YAML configuration file',
+        default: '~/.feedigest/config.yaml'
+      )
+
       o.bool(
         '-n',
         '--dry-run',
