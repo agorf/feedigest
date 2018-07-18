@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'mail', '~> 2.7'
   gem.add_dependency 'nokogiri', '~> 1.8'
   gem.add_dependency 'reverse_markdown', '~> 1.1'
+  gem.add_dependency 'slop', '~> 4.6', '>= 4.6.2'
 
   gem.add_development_dependency 'bundler-audit', '~> 0.6'
 end

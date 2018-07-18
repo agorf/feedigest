@@ -43,8 +43,8 @@ The following configuration options are supported:
   the email
 * `email_recipient` (required) the email address to send the email to
 
-feedigest uses SMTP to send emails. You can get a free plan from [Mailgun][].
-The relevant configuration options are:
+feedigest uses SMTP to send emails ([Mailgun][] has a free plan). The relevant
+configuration options are:
 
 [Mailgun]: http://www.mailgun.com/
 
@@ -56,8 +56,7 @@ The relevant configuration options are:
   `login` or `cram_md5`)
 * `smtp_starttls` (default: `true`) controls use of STARTTLS
 
-Finally, you need to provide to the standard input (stdin) of feedigest, a
-line-separated list of feed URLs:
+Finally, you will need a line-separated list of feed URLs:
 
 ```sh
 $ cat > ~/.feedigest/feeds.txt
@@ -72,7 +71,7 @@ https://github.com/agorf.atom
 ## Use
 
 ```sh
-feedigest send < ~/.feedigest/feeds.txt
+feedigest --feeds ~/.feedigest/feeds.txt
 ```
 
 You can run this with [cron][] e.g. once per day at 10 am:
@@ -80,22 +79,19 @@ You can run this with [cron][] e.g. once per day at 10 am:
 [cron]: https://en.wikipedia.org/wiki/Cron
 
 ```
-0 10 * * * feedigest send < ~/.feedigest/feeds.txt
+0 10 * * * feedigest --feeds ~/.feedigest/feeds.txt
 ```
 
 Alternatively, you can have feedigest simply print the generated email so that
-you can send it yourself e.g. by piping it to sendmail. To do that, you simply
-replace `feedigest send` with `feedigest print`:
+you can send it yourself e.g. by piping it to sendmail:
 
 ```sh
-feedigest print < ~/.feedigest/feeds.txt
+feedigest --dry-run --feeds ~/.feedigest/feeds.txt
 ```
 
-It is also possible to have each feed filtered by a custom command (e.g.
-script).
-
-For example, the following script fixes a feed's entry publication dates that
-use Greek month names and don't follow the required RFC822 format:
+It is also possible to have each feed filtered by a custom command. For example,
+the following script fixes a feed's entry publication dates that use Greek month
+names and don't follow the required RFC822 format:
 
 ```ruby
 require 'nokogiri'
@@ -126,14 +122,14 @@ end
 ```
 
 The script reads the feed XML from its standard input (stdin) and writes the
-modified XML to its standard output (stdout).
-
-To use it as a filter, you simply pass as a command-line argument the necessary
-command to execute it:
+modified XML to its standard output (stdout). To use it as a filter, you simply
+pass as a command-line argument the necessary command to execute it:
 
 ```sh
-feedigest send 'ruby /path/to/filter.rb' < ~/.feedigest/feeds.txt
+feedigest --filter 'ruby /path/to/filter.rb' --feeds ~/.feedigest/feeds.txt
 ```
+
+You can issue `feedigest -h` to get some help text on the supported options.
 
 ## License
 

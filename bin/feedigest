@@ -1,21 +1,19 @@
 #!/usr/bin/env ruby
 
-if !%w[send print].include?(ARGV[0])
-  puts "#$0 <send|print>"
-  exit 1
-end
-
 require 'feedigest'
 
-feed_urls = $stdin.readlines.map(&:strip)
-feeds = Feedigest::FeedFetcher.new(feed_urls, ARGV[1]).feeds
+options = Feedigest::OptionParser.new(ARGV).options
+
+feed_urls = IO.readlines(options[:feeds]).map(&:strip)
+feeds = Feedigest::FeedFetcher.new(feed_urls, options[:filter]).feeds
 
 exit if feeds.empty?
 
 mail = Feedigest::MailComposer.new(feeds).mail
 mail_sender = Feedigest::MailSender.new(mail)
 
-case ARGV[0]
-when 'send' then mail_sender.deliver
-when 'print' then puts mail_sender
+if options[:dry_run]
+  puts mail_sender
+else
+  mail_sender.deliver
 end

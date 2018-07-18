@@ -12,6 +12,7 @@ module Feedigest
   end
 end
 
+require 'feedigest/option_parser'
 require 'feedigest/feed_fetcher'
 require 'feedigest/mail_composer'
 require 'feedigest/mail_sender'

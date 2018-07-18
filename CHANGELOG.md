@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 - Support filtering feeds through an external command.
 - Opening informational text in digest email.
+- Support for command-line options.
 
 ### Changed
 
