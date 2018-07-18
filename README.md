@@ -126,7 +126,7 @@ modified XML to its standard output (stdout). To use it as a filter, you simply
 pass as a command-line argument the necessary command to execute it:
 
 ```sh
-feedigest --filter 'ruby /path/to/filter.rb' --feeds ~/.feedigest/feeds.txt
+feedigest --feeds ~/.feedigest/feeds.txt --filter 'ruby /path/to/filter.rb'
 ```
 
 Finally, it is possible to specify the path to the YAML configuration file with
