@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ## [Unreleased][]
 
+## [0.2.0][] - 2018-07-18
+
 ### Added
 
 - Support filtering feeds through an external command.
@@ -62,4 +64,5 @@ Initial release.
 [0.0.2]: https://github.com/agorf/feedigest/compare/0.0.1...0.0.2
 [0.0.3]: https://github.com/agorf/feedigest/compare/0.0.2...0.0.3
 [0.1.0]: https://github.com/agorf/feedigest/compare/0.0.3...0.1.0
-[Unreleased]: https://github.com/agorf/feedigest/compare/0.1.0...HEAD
+[0.2.0]: https://github.com/agorf/feedigest/compare/0.1.0...0.2.0
+[Unreleased]: https://github.com/agorf/feedigest/compare/0.2.0...HEAD
