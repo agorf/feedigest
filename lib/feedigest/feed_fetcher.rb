@@ -1,4 +1,5 @@
 require 'feedigest/config'
+require 'feedigest/version'
 require 'feedjira'
 require 'open-uri'
 
