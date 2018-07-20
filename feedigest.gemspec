@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'slop', '~> 4.6', '>= 4.6.2'
 
   gem.add_development_dependency 'bundler-audit', '~> 0.6'
+  gem.add_development_dependency 'rspec', '~> 3.7', '>= 3.7.0'
 end
