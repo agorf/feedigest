@@ -56,6 +56,16 @@ configuration options are:
   `login` or `cram_md5`)
 * `smtp_starttls` (default: `true`) controls use of STARTTLS
 
+Here's a sample config file:
+
+```yaml
+email_recipient: me@mydomain.com
+email_sender: feedigest@mydomain.com
+smtp_address: smtp.mailgun.org
+smtp_username: postmaster@mydomain.com
+smtp_password: 'mypassword'
+```
+
 Finally, you will need a line-separated list of feed URLs:
 
 ```sh
