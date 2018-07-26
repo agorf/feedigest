@@ -70,7 +70,7 @@ Finally, you will need a line-separated list of feed URLs:
 
 ```sh
 $ cat > ~/.feedigest/feeds.txt
-https://github.com/agorf/feed2email/commits.atom
+https://github.com/agorf/feedigest/commits.atom
 https://github.com/agorf.atom
 ...
 ^D
