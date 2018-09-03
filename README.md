@@ -5,6 +5,8 @@ updates as a single digest email.
 
 It was written as a simpler alternative to [feed2email][].
 
+A free, hosted service is also available at <https://feedigest.email>
+
 [headless]: http://en.wikipedia.org/wiki/Headless_software
 [RSS]: http://www.rssboard.org/rss-specification
 [Atom]: https://tools.ietf.org/html/rfc4287
